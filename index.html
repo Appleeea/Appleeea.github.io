@@ -1,28 +1,682 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
-		<meta charset="utf-8" />
-		<title>zhanghua'house</title>
-		<link rel="shortcut icon" href="img/my.ico" />
-		<link rel="stylesheet" type="text/css" href="css/index.css"/>
+		<meta charset="UTF-8">
+		<title>张华个人简历</title>
+		<link rel="stylesheet" type="text/css" href="css/jquery.fullPage.css" />
+		<link rel="stylesheet" type="text/css" href="css/base.css" />
+		<link rel="stylesheet" type="text/css" href="css/animate.css" />
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+		<!--<link rel="stylesheet" type="text/css" href="css/page1.css"/>-->
+		<style type="text/css">
+			/*h1,
+			ul {
+				margin: 0;
+			}*/
+			
+			#Menu {
+				height: 100px;
+				width: 100%;
+				position: fixed;
+				top: 0;
+				left: 0;
+				z-index: 1;
+				background: rgba(0, 0, 0, 0.6);
+				overflow: hidden;
+			}
+			
+			.user {
+				margin-left: 20%;
+				float: left;
+			}
+			
+			#Menu .pic {
+				width: 70px;
+				height: 70px;
+				border-radius: 50%;
+			}
+			
+			#Menu .user p {
+				width: 80px;
+				height: 30px;
+				line-height: 30px;
+				font-size: 28px;
+				color: yellowgreen;
+			}
+			
+			.navlist {
+				margin-left: 30%;
+				height: 100px;
+				line-height: 100px;
+			}
+			
+			.navlist li {
+				margin-top: 10px;
+				display: inline-block;
+				text-align: center;
+				background: gray;
+				width: 120px;
+				height: 80px;
+				font-size: 25px;
+				border-radius:10px;
+				margin-left: 2%;
+				line-height: 80px;
+				-webkit-transform:skew(-45deg) ;
+			}
+			.navlist li a{
+				margin-left: 2%;
+			}
+			
+			.navlist li:hover {
+				background: sandybrown;
+			}
+			
+			.navlist li a {
+				display: inline-block;
+				-webkit-transform:skew(45deg) ;
+				color: #fff;
+			}
+			
+			.navlist li a:hover {
+				text-decoration: none;
+				color: #fff;
+			}
+			
+			.section:nth-of-type(1) {
+				text-align: center;
+				background: url(img/page1.png);
+				background-size: cover;
+				background-repeat: no-repeat;
+			}
+			
+			.section:nth-of-type(2) {
+				background: url(img/page1.png);
+				background-size: 100% 100%;
+				background-repeat: no-repeat;
+			}
+			
+			.section:nth-of-type(3) {
+				background: url(img/page1.png);
+				background-size: 100% 100%;
+			}
+			
+			.section:nth-of-type(4) {
+				background: url(img/page1.png);
+				background-size: 100% 100%;
+			}
+			
+			h1 {
+				display: none;
+			}
+			
+			
+			.animate1 {
+				width: 100%;
+			}
+			
+			.animate1 .box1 {
+				width: 620px;
+				font-family: "微软雅黑";
+				padding-bottom: 20px;
+				border-bottom: 3px solid goldenrod;
+				font-size: 30px;
+				color: #292929;
+				animation-delay: 1s;
+				display: inline-block;
+				color: goldenrod;
+				margin: 10px auto 30px;
+			}
+			
+			.animate2 p{
+				text-align: center;
+				font-family: "微软雅黑";
+				font-size: 22px;
+				color: #292929;
+				animation-delay: 2s;
+				line-height: 30px;
+				color: gray;
+			}
+			
+			.box2 {
+				font-family: "微软雅黑";
+				font-size: 70px;
+				color: goldenrod;
+				/*animation-delay: 2s;*/
+				display: inline-block;
+			}
+			
+			audio {
+				position: fixed;
+				left: 0;
+				bottom: 0;
+			}
+			
+			.page3 {
+				text-align: center;
+			}
+			
+			.goods li {
+				width: 300px;
+				height: 300px;
+				background: whitesmoke;
+				display: inline-block;
+				margin: 15px;
+				position: relative;
+			}
+			
+			.goods li p {
+				position: absolute;
+				bottom: 10px;
+				left: 50%;
+				margin-left:-100px;
+				width: 200px;
+				height: 30px;
+				line-height: 30px;
+				border: 2px solid gray;
+			}
+			
+			.goods li img {
+				width: 240px;
+				height: 210px;
+				margin-top: 20px;
+				opacity: 0.6;
+			}
+			
+			.son {
+				margin-top: ;
+				text-align: center;
+				font-size: 30px;
+				font-family: "微软雅黑";
+				color: whitesmoke;
+				width: 200px;
+				margin: 60px auto 40px;
+			}
+			/*旋转*/
+			
+			#show {
+				position: relative;
+				top: -200px;
+				margin: 20px auto;
+				width: 800px;
+				/*border: 1px solid #999999;*/
+			}
+			
+			.item {
+				position: absolute;
+				height: 240px;
+				width: 180px;
+				background: gainsboro;
+				border: 5px solid whitesmoke;
+				cursor: pointer;
+				text-align: center;
+				font-size: 25px;
+				font-family: "微软雅黑";
+				color: sandybrown;
+				background-size: 500px 600px;
+				background: url(img/bg.jpg);
+			}
+			.item.active{
+				-webkit-animation:see 2s forwards;
+			}
+			@-webkit-keyframes see{
+				from{
+					-webkit-transform: rotateX(180deg);
+					opacity: 0;
+				}
+				to{
+					-webkit-transform: rotateX(0);
+					opacity: 1;
+				}
+			}
+			
+			.item h2{
+				font-size: 36px;
+				width:100px;
+				margin: auto;
+				line-height: 200px;
+			}
+			.item p{
+				font-size: 16px;
+				height: 230px;
+				width: 170px;
+				background: grey;
+				line-height: 20px;
+				color: white;
+				text-align: left;
+				padding: 10px;
+				display: none;
+			}
+			.item:nth-of-type(1) {
+				background-position-x: 0px;
+				background-position-y: -10px;
+			}
+			
+			.item:nth-of-type(2) {
+				background-position-x: 600px;
+				background-position-y: -100px;
+			}
+			
+			.item:nth-of-type(3) {
+				background-position-x: 100px;
+				background-position-y: -200px;
+			}
+			
+			.item:nth-of-type(4) {
+				background-position-x: 600px;
+				background-position-y: -250px;
+			}
+			
+			.item:nth-of-type(5) {
+				background-position-x: 480px;
+				background-position-y: -380px;
+			}
+			
+			.item:nth-of-type(6) {
+				background-position-x: 400px;
+				background-position-y: -700px;
+			}
+			#l,#r{
+				display: inline-block;
+				width: 100px;
+				height: 30px;
+				background: gainsboro;
+				text-align: center;
+				line-height: 30px;
+			}
+			/*横向切换箭头样式*/
+			
+			.fp-controlArrow.fp-next {
+				right: 15px;
+				margin-top: -100px;
+				border-width: 20px 0 20px 18px;
+				border-color: transparent transparent transparent silver;
+			}
+			
+			.fp-controlArrow.fp-prev {
+				/*right: 15px;*/
+				margin-top: -100px;
+				border-width: 20px 20px 18px 0;
+				border-color: transparent silver transparent transparent;
+			}
+			
+			.fp-tooltip.right {
+				background: sandybrown;
+			}
+			
+			#fp-nav ul li .fp-tooltip {
+				text-align: center;
+				min-width: 80px;
+				color: black;
+				border-radius: 6px;
+			}
+			
+			/*留言区控制*/
+			.control{
+				width: 400px;
+				border: 1px solid mediumvioletred;
+				border-radius: 10px;
+				margin: auto;
+				text-align: center;
+				padding: 20px;
+			}
+			.control input,.control textarea{
+				width: 90%;
+			}
+			.control input{
+				height: 30px;
+			}
+			.control textarea{
+				resize: none;
+				height: 100px;
+				margin:10px 0;
+			}
+			.control button{
+				padding: 10px 40px;
+			}
+			.box{
+				height: 200px;
+				width: 200px;
+				background: url(img/bgbox.png) no-repeat;
+				background-size: 100% 100%;
+				padding: 10px;
+				position: absolute;
+				top: -210px;
+			}
+			.box span{
+				position: absolute;
+				top: 10px;
+				right: 10px;
+				color: #FFF;
+			}
+		</style>
 	</head>
+
 	<body>
-		<nav style="margin-bottom:150px;">
-					<ul>
-						<li><a  style="display: block;border-right: 0.5px solid black;">个人作品</a></li>
-						<li><a >联系我</a></li>
+		<!--最上边导航条-->
+		<div id="Menu">
+			<!--mp3播放器-->
+			<audio src="../music/goodnight.mp3" controls="controls"></audio>
+			<div class="user">
+				<img class="pic" src="img/user1.jpg" style="margin-top: 15px;"/>
+				<!--<p></p>-->
+			</div>
+			<ul class="navlist">
+				<li data-menuanchor='page1'>
+					<a href="#page1">首页</a>
+				</li>
+				<li data-menuanchor='page2'>
+					<a href="#page2">专业技能</a>
+				</li>
+				<li data-menuanchor='page3'>
+					<a href="#page3">案例展示</a>
+				</li>
+				<li data-menuanchor='联系我'>
+					<a href="#page4">联系我</a>
+				</li>
+			</ul>
+		</div>
+		<div id="fullpage">
+			<!--第一页-->
+			<div class="section">
+				<div class="animate1">
+					<h1 class="animated box1">这个行业你要么坐上压路机，要么成为铺路石!</h1>
+				</div>
+				<div class="animate2" >
+					<p class="animated box2">我叫张华</p>
+					<p class="animated box2">初入前端，却是一条有梦想的咸鱼！</p>
+					<p class="animated box2">25岁</p>
+					<p class="animated box2">EMAIL：1114379377@qq.com</p>
+					<p class="animated box2">TEL:17721306842</p>
+				</div>
+			</div>
+			<!--第二页-->
+			<div class="section page2">
+				<ul id="show">
+					<li class="item"><h2>HTML</h2><p>
+						1.深刻理解Web标准
+						</br>2.熟练运用html标签
+						</br>3.掌握html5如canvas audio</p>
+					</li>
+					<li class="item"><h2>CSS</h2><p>
+						1.熟练运用css以及css3新属性
+						</br>2.了解css预编译器Less与Sass
+						</br>3.注重浏览器兼容性，熟悉常见的css hack
+						</br>4.掌握Bootstarp框架以及源码的实现</p>
+					</li>
+					<li class="item"><h2>JS</h2><p>
+						1.掌握jQuery
+						</br>2.掌握原生JS的编程
+						</br>3.注重JavaScrip的性能优化</p>
+					</li>
+					<li class="item"><h2>MUI</h2>
+						<p>
+						1.熟练使用MUI开发移动端App
+						</p>
+					</li>
+					<li class="item"><h2>PHP</h2><p>
+
+						1.熟悉使用PHP进行后端交互
+						</br>2.熟悉使用PHP与前端数据对接
+						</br>3.熟悉使用PHP操作数据库数据</p>
+					</li>
+					<li class="item"><h2>Mysql</h2>
+						<p>
+						1.熟悉增删改查，数据操作基本知识
+						</p>
+					</li>
+				</ul>
+			</div>
+			<!--第三页-->
+			<div class="section page3 ">
+				<!--第三页第一屏-->
+				<div class="slide">
+					<p class="son">个人作品集</p>
+					<ul class="goods">
+						<li>
+							<a href="demo/erun/erun/index.html" target="_blank">
+								<img src="img/click.png" />
+								<p>益跑网</p>
+							</a>
+						</li>
+						<li>
+							<a href="demo/bootstrap1/index.html" target="_blank">
+							<img src="img/box.png" />
+							<p>bootsrap项目</p>
+							</a>
+						</li>
+						<li>
+							<a href="../YOHO_PC/YOHO_BOY.html" target="_blank">
+							<img src="img/yoho.jpg" />
+							<p>Yoho整栈</p>
+							</a>
+						</li>
+						</br>
+						<li>
+							<a href="../JS_test/JS_test/prize.html">
+							<img src="img/prize.png" />
+							<p>滚动摇奖</p>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+							<img src="img/leavemessage.png" />
+							<p>JS留言条</p>
+							</a>
+						</li>
+						<li>
+							<a href="../JS_test/JS_test/hejing.html">
+							<img src="img/xiaoyouxi.jpg" />
+							<p>JS点击小游戏</p>
+							</a>
+						</li>
 					</ul>
-		</nav>
-		
-		<!--//文字飞入-->
-		
-		 <div class="company">
-            <h2 class="company_name" style="text-align: center;"><img src="img/lan.png" style="height: 200px;"/></h2>
-            <h5 class="company_introduce" style="text-align: center;"><img src="img/rock-on.png"  style="width: 30px;"/></h5>   
-            <h5 class="company_introduce"></h5> 
-        </div>
-        
-        
-        
+				</div>
+				<!--第三页第二屏-->
+				<div class="slide">
+					<p class="son">个人作品集</p>
+					<ul class="goods">
+						<li>
+							<a href="../clock/clock.html">
+								<img src="img/click.png" />
+								<p>CSS动画时钟</p>
+							</a>
+						</li>
+						<li>
+							<a href="../CSS3test/3Dbox.html">
+							<img src="img/box.png" />
+							<p>3D盒子爆炸</p>
+							</a>
+						</li>
+						<li>
+							<a href="../YOHO_PC/YOHO_BOY.html" target="_blank">
+							<img src="img/yoho.jpg" />
+							<p>Yoho整栈</p>
+							</a>
+						</li>
+						</br>
+						<li>
+							<a href="../JS_test/JS_test/prize.html">
+							<img src="img/prize.png" />
+							<p>滚动摇奖</p>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+							<img src="img/leavemessage.png" />
+							<p>JS留言条</p>
+							</a>
+						</li>
+						<li>
+							<a href="../JS_test/JS_test/hejing.html">
+							<img src="img/xiaoyouxi.jpg" />
+							<p>JS点击小游戏</p>
+							</a>
+						</li>
+					</ul>
+				</div>
+				<!--第三页第三屏-->
+				
+				<div class="slide">
+					<p class="son">个人作品集</p>
+					<ul class="goods">
+						<li>
+							<img src="img/forbig.png" />
+							<p>CSS放大镜效果</p>
+						</li>
+						<li>
+							<img src="img/news.png" />
+							<p>PHP新闻效果</p>
+						</li>
+						<li>
+							<a href="../baidu/baidu.html">
+							<img src="img/baidu.jpg" />
+							<p>百度搜索</p>
+							</a>
+						</li>
+						</br>
+						<li>
+							<img src="img/mp3.jpg" />
+							<p>html5实现音乐播放器</p>
+						</li>
+						<li>
+							<img src="img/mp4.png" />
+							<p>html5实现视频播放器</p>
+						</li>
+						<li>
+							<img src="img/2345_image_file_copy_6.jpg" />
+							<p>ajax实现个人博客管理</p>
+						</li>
+					</ul>
+				</div>
+				<h1>专业技能</h1>
+			</div>
+			<div class="section " id="messagebox">
+				<div class="animate1">
+					<h1 class="animated box1" style="color: deepskyblue;text-align: center;">扫一扫，联系我</h1>
+				</div>
+				<div class="animate2">
+					<p class="animated box2"><img src="img/myqq.jpg" alt="" style="width: 100px;"/></p>
+					<p class="animated box2">QQ：<a href="">1114379377@qq.com</a></p>
+					<p class="animated box2"><img src="img/myweixin.jpg" alt="" / style="width: 100px;"></p>
+					<p class="animated box2">WeiXin：<a href="">wwwzhanghua1204</a></p>
+					<p class="animated box2">TEL:17721306842</p>
+					<!--<img src="img/myqq.jpg" alt="" />
+					<img src="img/myweixin.jpg" alt="" />-->
+				</div>
+			</div>
+		</div>
+
 	</body>
+	<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+	<script type="text/javascript" src="js/jquery.fullPage.min.js"></script>
+	<!--<script type="text/javascript" src="js/new_file.js" ></script>-->
+	<script type="text/javascript">
+		$(function() {
+			$('#fullpage').fullpage({
+				anchors: ['page1', 'page2', 'page3', 'page4'],
+				controlArrows: true,
+				slideNavigation: true,
+				navigationTooltips: ['首页', '基本资料', '个人作品集', '联系我'], //默认圆点导航的介绍性文字
+				//				controlArrows:true, //横向轮播左右箭头控制
+				menu: '#Menu',
+				navigation: true
+			})
+		})
+		$(document).on('mouseover', function() {
+			$('.box1').css('display', 'block');
+			$('.box1').addClass('bounceInLeft');
+			$('.box2').css('display', 'block');
+			$('.box2').addClass('bounceInRight');
+		})
+
+		//第二页旋转介绍
+		var len;
+		var aShow;
+		var oLi;
+		var showerWidth = 800;
+		var showerHeight = 400;
+		var r;
+		var cR = 0;
+		var ccR = 0;
+		var timer = 0;
+		window.onload = function() {
+//			获得li元素
+			var oItem=document.getElementsByClassName('item');
+//			获得form元素
+			aShow = document.getElementById("show");
+			oLi = aShow.getElementsByTagName("li");
+			len = oLi.length;
+			r = Math.PI / 180 * 360 / len;
+//			console.log(Math.PI);
+			for(var i = 0; i < len; i++) {
+				var item = oLi[i];
+				//每一个li绑定属性和事件
+				item.style.top = showerHeight / 2 + Math.sin(r * i) * showerWidth / 2 - 20 + "px";
+				item.style.left = showerWidth / 2 + Math.cos(r * i) * showerWidth / 2 - 30 + "px";
+				item.rotate = (r * i + 2 * Math.PI) % (2 * Math.PI);
+				//点击，旋转90度，
+				item.onclick= function() {
+					//需要旋转的角度
+					cR = Math.PI / 2 - this.rotate;
+//					旋转需要用时设定时间
+					timer = setInterval(rotate, 10);
+				}
+			}
+			//点击当前页的显示，及旋转
+		$('.item').click(function(){
+			$('.item').children('p').hide();
+			$('.item').children('h2').show();
+			$(this).children('p').show();
+			$(this).children('h2').hide();
+			$(this).toggleClass('active');
+		})
+//		$('.item').mouseout(function(){
+////			$(this).children('h2').show();
+////			$(this).children('p').hide();
+//		})
+			
+			var rX = aShow.offsetLeft + showerWidth / 2;
+			var ry = aShow.offsetTop + showerHeight / 2;
+
+			var rotate = function() {
+				ccR = (ccR + 2 * Math.PI) % (2 * Math.PI);
+				if(cR - ccR < 0) cR = cR + 2 * Math.PI;
+				if(cR - ccR < Math.PI) {
+					ccR = ccR + (cR - ccR) / 19;
+				} else {
+					ccR = ccR - (2 * Math.PI + ccR - cR) / 19;
+
+				}
+
+				if(Math.abs((cR + 2 * Math.PI) % (2 * Math.PI) - (ccR + 2 * Math.PI) % (2 * Math.PI)) < Math.PI / 720) {
+					ccR = cR;
+					clearInterval(timer);
+				}
+				//设置图片大小，位置，堆叠效果，层级
+				for(var i = 0; i < len; i++) {
+					var item = oLi[i];
+					var w, h;
+					var sinR = Math.sin(r * i + ccR);
+					var cosR = Math.cos(r * i + ccR);
+					w = 150 + 0.2 * 150 * sinR;
+					h = (200 + 0.2 * 200 * sinR);
+					item.style.cssText += ";width:" + w + "px;height:" + h + "px;top:" + parseInt(showerHeight / 2 + sinR * showerWidth / 2 / 3 - w / 2) + "px;left:" + parseInt(showerWidth / 2 + cosR * showerWidth / 2 - h / 2) + "px;z-index:" + parseInt(showerHeight / 2 + sinR * showerWidth / 2 / 3 - w / 2) + ";";
+
+				}
+			}
+
+			rotate();
+		}
+		
+		
+		
+		
+		
+	</script>
+
 </html>
+
+</head>
+
+<body>
